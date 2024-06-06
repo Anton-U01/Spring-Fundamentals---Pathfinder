@@ -34,6 +34,14 @@ public class Route extends BaseEntity {
         pictures = new HashSet<>();
     }
 
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
+    }
+
     public Set<Category> getCategories() {
         return categories;
     }

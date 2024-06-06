@@ -19,6 +19,7 @@ public class User extends BaseEntity{
     private String email;
     @ManyToMany
     private Set<Role> roles;
+    @Enumerated(EnumType.STRING)
     private Level level;
 
     public User() {
