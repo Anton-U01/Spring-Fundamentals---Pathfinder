@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.HashSet;
 import java.util.Set;
-import java.util.Set;
+
 
 @Entity
 @Table(name = "routes")
@@ -25,7 +25,7 @@ public class Route extends BaseEntity {
     private Set<Category> categories;
     @OneToMany(mappedBy = "route")
     private Set<Comment> comments;
-    @OneToMany(mappedBy = "route")
+    @OneToMany(mappedBy = "route",fetch = FetchType.EAGER)
     private Set<Picture> pictures;
 
     public Route() {

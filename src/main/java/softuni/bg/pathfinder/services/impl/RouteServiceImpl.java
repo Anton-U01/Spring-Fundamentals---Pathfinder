@@ -9,6 +9,7 @@ import softuni.bg.pathfinder.services.RouteService;
 import softuni.bg.pathfinder.models.dtos.RouteInfoDto;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -29,6 +30,13 @@ public class RouteServiceImpl implements RouteService {
                 .map(this::MapRouteToDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public Route getRouteById(Long id) {
+        Optional<Route> optionalRoute = routeRepository.findById(id);
+        return optionalRoute.orElse(null);
+    }
+
     private RouteInfoDto MapRouteToDto(Route route) {
         RouteInfoDto dto = modelMapper.map(route, RouteInfoDto.class);
         dto.setPictureUrl(route.getPictures().stream().findFirst().get().getUrl());
