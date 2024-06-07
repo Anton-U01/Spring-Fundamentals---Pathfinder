@@ -1,4 +1,4 @@
-package softuni.bg.pathfinder.services.dtos;
+package softuni.bg.pathfinder.models.dtos;
 
 public class RouteInfoDto {
     private long id;

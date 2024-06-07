@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import softuni.bg.pathfinder.services.RouteService;
-import softuni.bg.pathfinder.services.dtos.RouteInfoDto;
+import softuni.bg.pathfinder.models.dtos.RouteInfoDto;
 
 import java.util.List;
 

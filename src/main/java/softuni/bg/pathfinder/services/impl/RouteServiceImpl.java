@@ -6,7 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 import softuni.bg.pathfinder.models.Route;
 import softuni.bg.pathfinder.repositories.RouteRepository;
 import softuni.bg.pathfinder.services.RouteService;
-import softuni.bg.pathfinder.services.dtos.RouteInfoDto;
+import softuni.bg.pathfinder.models.dtos.RouteInfoDto;
 
 import java.util.List;
 import java.util.stream.Collectors;

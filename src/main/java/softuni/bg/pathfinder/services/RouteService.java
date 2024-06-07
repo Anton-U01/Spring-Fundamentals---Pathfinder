@@ -1,6 +1,6 @@
 package softuni.bg.pathfinder.services;
 
-import softuni.bg.pathfinder.services.dtos.RouteInfoDto;
+import softuni.bg.pathfinder.models.dtos.RouteInfoDto;
 
 import java.util.List;
 

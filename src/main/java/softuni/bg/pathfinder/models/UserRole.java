@@ -1,5 +1,5 @@
 package softuni.bg.pathfinder.models;
 
-public enum UserRoles {
+public enum UserRole {
     USER,MODERATOR,ADMIN
 }
