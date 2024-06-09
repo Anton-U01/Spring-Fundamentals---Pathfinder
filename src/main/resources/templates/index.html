@@ -51,6 +51,10 @@
     </nav>
 </header>
     <!-- Top Container -->
+    <h2>WELCOME TO SITE,
+        <th:block th:if="${@currentUser.isLoggedIn()}" th:text="${@currentUser.getFullName()}"></th:block>
+        <th:block th:unless="${@currentUser.isLoggedIn()}">UNKNOWN</th:block>
+        !</h2>
     <section class="top-container">
         <div class="showcase">
             <h1>Find amazing routes</h1>

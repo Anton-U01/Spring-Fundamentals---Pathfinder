@@ -8,15 +8,16 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import softuni.bg.pathfinder.models.dtos.UserLoginDto;
 import softuni.bg.pathfinder.models.dtos.UserRegisterDto;
 import softuni.bg.pathfinder.services.UserService;
 
 
 @Controller
-public class UsersController {
+public class UserController {
     private final UserService userService;
 
-    public UsersController(UserService userService) {
+    public UserController(UserService userService) {
         this.userService = userService;
     }
 
@@ -43,5 +44,21 @@ public class UsersController {
         userService.RegisterUser(userRegisterDto);
 
         return "login";
+    }
+
+    @GetMapping("/users/login")
+    public String viewLogin(){
+        return "login";
+    }
+
+    @PostMapping("/users/login")
+    public String loginUser(UserLoginDto userLoginDto){
+
+        if(userService.login(userLoginDto)){
+            System.out.println(userLoginDto.toString());
+            return "redirect:/";
+        }
+        return "login";
+
     }
 }
