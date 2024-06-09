@@ -55,7 +55,6 @@ public class UserController {
     public String loginUser(UserLoginDto userLoginDto){
 
         if(userService.login(userLoginDto)){
-            System.out.println(userLoginDto.toString());
             return "redirect:/";
         }
         return "login";
