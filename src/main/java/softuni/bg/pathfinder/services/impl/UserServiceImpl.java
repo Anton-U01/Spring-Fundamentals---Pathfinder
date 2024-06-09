@@ -3,6 +3,7 @@ package softuni.bg.pathfinder.services.impl;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import softuni.bg.pathfinder.models.Role;
 import softuni.bg.pathfinder.models.User;
 import softuni.bg.pathfinder.models.UserRole;
@@ -43,6 +44,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public boolean login(UserLoginDto userLoginDto) {
 
         Optional<User> optionalUser = userRepository.findUserByUsername(userLoginDto.getUsername());
@@ -54,6 +56,9 @@ public class UserServiceImpl implements UserService {
         boolean matches = passwordEncoder.matches(userLoginDto.getPassword(),rawPassword);
         if(matches){
             currentUser.setFullName(user.getFullName());
+            if(user.getRoles().stream().anyMatch(r -> r.getName() == UserRole.ADMIN)){
+                currentUser.setAdmin(true);
+            }
             currentUser.setLoggedIn(true);
         } else {
             currentUser.reset();

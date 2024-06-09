@@ -20,36 +20,7 @@
 <body>
 <div class="wrapper">
     <!-- Navigation -->
-    <header>
-    <nav class="main-nav">
-        <ul>
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/">Login</a>
-                </li>
-                <li>
-                    <a href="/">Register</a>
-                </li>
-                <li>
-                    <a href="/">About</a>
-                </li>
-				<li>
-                    <a href="/">Add new route</a>
-                </li>
-                <li>
-                    <a href="/">Profile</a>
-                </li>
-                <li>
-                    <a href="/">Admin</a>
-                </li>
-                <li>
-                    <a href="/">Logout</a>
-                </li>
-        </ul>
-    </nav>
-</header>
+    <section th:insert="fragments/navbar::navigation"></section>>
     <!-- Top Container -->
     <h2>WELCOME TO SITE,
         <th:block th:if="${@currentUser.isLoggedIn()}" th:text="${@currentUser.getFullName()}"></th:block>
