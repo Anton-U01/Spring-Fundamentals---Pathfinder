@@ -37,6 +37,17 @@ public class RouteServiceImpl implements RouteService {
         return optionalRoute.orElse(null);
     }
 
+    @Override
+    public RouteInfoDto getMostCommentedRoute() {
+        Optional<Route> mostCommentedRoute = routeRepository.findMostCommentedRoute();
+        RouteInfoDto routeInfoDto = null;
+        if(mostCommentedRoute.isPresent()){
+            routeInfoDto = MapRouteToDto(mostCommentedRoute.get());
+        }
+        return routeInfoDto;
+    }
+
+
     private RouteInfoDto MapRouteToDto(Route route) {
         RouteInfoDto dto = modelMapper.map(route, RouteInfoDto.class);
         dto.setPictureUrl(route.getPictures().stream().findFirst().get().getUrl());

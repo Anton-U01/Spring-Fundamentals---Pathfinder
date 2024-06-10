@@ -1,31 +1,13 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 
-<head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Pathfinder</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/mobile.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
-          integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css"
-          integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
-          crossorigin=""/>
-    <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"
-            integrity="sha512-QVftwZFqvtRNi0ZyCtsznlKSWOStnDORoefr1enyq5mVL4tmKB3S/EnC3rRJcxCPavG10IcrVGSmPh6Qw5lwrg=="
-            crossorigin=""></script>
-</head>
+<head th:replace="/fragments/head :: head"></head>
 <body>
 <div class="wrapper">
     <!-- Navigation -->
-    <section th:insert="fragments/navbar::navigation"></section>>
+    <header th:replace="fragments/header"></header>
     <!-- Top Container -->
-    <h2>WELCOME,
-        <th:block th:if="${@currentUser.isLoggedIn()}" th:text="${@currentUser.getFullName()}"></th:block>
-        <th:block th:unless="${@currentUser.isLoggedIn()}">UNKNOWN</th:block>!
-    </h2>
+
     <section class="top-container">
         <div class="showcase">
             <h1>Find amazing routes</h1>
@@ -77,13 +59,13 @@
     </section>
 
     <!-- Info Section -->
-    <section class="road">
-        <img src="/images/most-commented.jpg" alt="">
+    <section th:object="${routeDto}" class="road">
+        <img th:src="*{pictureUrl}" alt="">
         <div>
-            <h2>The most commented route</h2>
-            <p>Read more about the most commented route and do not miss the
+            <h2 th:text="${routeDto.getName()}">The most commented route</h2>
+            <p th:text="${routeDto.getDescription()}">Read more about the most commented route and do not miss the
                 chance to visit it and give your opinion to help other users.</p>
-            <a href="/" class="btn">Learn More</a>
+            <a th:href=" '/routes/details/' + *{id}" class="btn">Learn More</a>
         </div>
     </section>
 
@@ -97,13 +79,7 @@
 </div>
 <!-- Wrapper Ends -->'
 
-<footer class="footer bg-blur rounded">
-    <div class="container-fluid text-center">
-        <div class="h5 text-white">
-            &copy; Lucho, Chocho & Spring Advanced Students 2021. All rights reserved.
-        </div>
-    </div>
-</footer>
+<footer th:replace="/fragments/footer :: footer" class="footer bg-blur rounded"></footer>
 </body>
 
 </html>
