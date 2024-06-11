@@ -7,13 +7,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import softuni.bg.pathfinder.models.Level;
 import softuni.bg.pathfinder.models.dtos.UserLoginDto;
 import softuni.bg.pathfinder.models.dtos.UserRegisterDto;
 import softuni.bg.pathfinder.services.UserService;
 
 
 @Controller
+@RequestMapping("/users")
 public class UserController {
     private final UserService userService;
 
@@ -21,15 +24,16 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/users/register")
+    @GetMapping("/register")
     public String viewRegister(Model model){
         if(!model.containsAttribute("userRegister")) {
             model.addAttribute("userRegister",new UserRegisterDto());
+            model.addAttribute("levels",Level.values());
         }
         return "register";
     }
 
-    @PostMapping("/users/register")
+    @PostMapping("/register")
     public String doRegister(@Valid UserRegisterDto userRegisterDto,
                              BindingResult bindingResult,
                              RedirectAttributes redirectAttributes){
@@ -46,12 +50,12 @@ public class UserController {
         return "login";
     }
 
-    @GetMapping("/users/login")
+    @GetMapping("/login")
     public String viewLogin(){
         return "login";
     }
 
-    @PostMapping("/users/login")
+    @PostMapping("/login")
     public String loginUser(UserLoginDto userLoginDto){
 
         if(userService.login(userLoginDto)){
@@ -59,5 +63,21 @@ public class UserController {
         }
         return "login";
 
+    }
+    @PostMapping("/logout")
+    public String logOut(){
+        userService.logOut();
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/profile")
+    public String showProfile(Model model){
+
+        model.addAttribute("currentUser",userService.getCurrentUser());
+        model.addAttribute("levels", Level.values());
+
+
+        return "profile";
     }
 }

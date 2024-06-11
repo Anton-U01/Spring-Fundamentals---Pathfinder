@@ -21,6 +21,10 @@ public class HomeController {
         model.addAttribute("routeDto",routeInfoDto);
         return "index";
     }
+    @GetMapping("/about")
+    private String about(){
+        return "about";
+    }
 
 
 }

@@ -9,4 +9,6 @@ public interface UserService {
 
     boolean login(UserLoginDto userLoginDto);
 
+    void logOut();
+    CurrentUser getCurrentUser();
 }

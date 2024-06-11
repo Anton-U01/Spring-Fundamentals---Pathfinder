@@ -2,6 +2,7 @@ package softuni.bg.pathfinder.models.dtos;
 
 
 import jakarta.validation.constraints.*;
+import softuni.bg.pathfinder.models.Level;
 
 public class UserRegisterDto {
     @NotEmpty
@@ -21,6 +22,17 @@ public class UserRegisterDto {
     @NotEmpty
     @Size(min = 2)
     private String confirmPassword;
+
+    private Level level;
+
+    public Level getLevel() {
+        return level;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
     public int getAge() {
         return age;
     }

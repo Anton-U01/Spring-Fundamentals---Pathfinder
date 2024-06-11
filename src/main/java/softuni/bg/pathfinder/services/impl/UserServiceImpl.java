@@ -37,6 +37,7 @@ public class UserServiceImpl implements UserService {
         if(userRepository.findUserByUsername(userRegisterDto.getUsername()).isEmpty()
         && userRegisterDto.getPassword().equals(userRegisterDto.getConfirmPassword())){
             User newUser = modelMapper.map(userRegisterDto, User.class);
+            newUser.setLevel(userRegisterDto.getLevel());
             newUser.setPassword(passwordEncoder.encode(userRegisterDto.getPassword()));
             newUser.getRoles().add(roleRepository.findByName(UserRole.valueOf("USER")));
             userRepository.saveAndFlush(newUser);
@@ -64,5 +65,14 @@ public class UserServiceImpl implements UserService {
             currentUser.reset();
         }
         return matches;
+    }
+
+    @Override
+    public void logOut() {
+        this.currentUser.reset();
+    }
+
+    public CurrentUser getCurrentUser() {
+        return currentUser;
     }
 }

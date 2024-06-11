@@ -19,19 +19,21 @@
                 <a href="/users/register">Register</a>
             </li>
             <li th:unless="${(@currentUser.isLoggedIn())}">
-                <a href="/">About</a>
+                <a href="/about">About</a>
             </li>
             <li th:if="${(@currentUser.isLoggedIn())}">
                 <a href="/">Add new route</a>
             </li>
             <li th:if="${(@currentUser.isLoggedIn())}">
-                <a href="/">Profile</a>
+                <a href="/users/profile">Profile</a>
             </li>
             <li th:if="${(@currentUser.isAdmin())}">
                 <a href="/">Admin</a>
             </li>
             <li th:if="${(@currentUser.isLoggedIn())}">
-                <a href="/">Logout</a>
+                <form th:method="post" th:action="@{/users/logout}">
+                    <button type="submit">Logout</button>
+                </form>
             </li>
         </ul>
     </nav>

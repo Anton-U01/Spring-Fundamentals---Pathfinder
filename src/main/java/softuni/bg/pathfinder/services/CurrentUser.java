@@ -3,6 +3,7 @@ package softuni.bg.pathfinder.services;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 import softuni.bg.pathfinder.models.Role;
+import softuni.bg.pathfinder.models.User;
 
 import java.util.Set;
 
@@ -41,4 +42,5 @@ public class CurrentUser {
         this.fullName = null;
         this.isLoggedIn = false;
     }
+
 }

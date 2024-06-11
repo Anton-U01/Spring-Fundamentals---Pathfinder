@@ -332,6 +332,19 @@ body {
     font-size: 19px
 }
 
+li button{
+    background: var(--primary);
+    display: block;
+    text-decoration: none;
+    padding: 0.8rem;
+    text-align: center;
+    color: var(--dark);
+    text-transform: uppercase;
+    font-size: 1.1rem;
+    box-shadow: var(--shadow);
+}
+
+
 .buttons button:nth-child(1) {
     border: 1px solid #0833e3 !important;
     color: #ffffff;
