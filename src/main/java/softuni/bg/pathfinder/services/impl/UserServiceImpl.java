@@ -4,6 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import softuni.bg.pathfinder.models.Level;
 import softuni.bg.pathfinder.models.Role;
 import softuni.bg.pathfinder.models.User;
 import softuni.bg.pathfinder.models.UserRole;
@@ -57,6 +58,9 @@ public class UserServiceImpl implements UserService {
         boolean matches = passwordEncoder.matches(userLoginDto.getPassword(),rawPassword);
         if(matches){
             currentUser.setFullName(user.getFullName());
+            currentUser.setLevel(user.getLevel());
+            currentUser.setAge(user.getAge());
+            currentUser.setUsername(user.getUsername());
             if(user.getRoles().stream().anyMatch(r -> r.getName() == UserRole.ADMIN)){
                 currentUser.setAdmin(true);
             }
