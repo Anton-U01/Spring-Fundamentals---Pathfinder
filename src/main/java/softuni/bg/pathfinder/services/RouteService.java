@@ -9,4 +9,6 @@ public interface RouteService {
     List<RouteInfoDto> getAllRoutes();
     Route getRouteById(Long id);
     RouteInfoDto getMostCommentedRoute();
+
+    List<String> getAllPictures();
 }
